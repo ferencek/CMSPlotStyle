@@ -70,6 +70,10 @@ CMS_lumi( TPad* pad, int iPeriod, int iPosX )
     {
       lumiText += "8 TeV";
     }
+  else if ( iPeriod==0 )
+    {
+      lumiText += lumi_sqrtS;
+    }
    
   cout << lumiText << endl;
 

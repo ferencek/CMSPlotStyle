@@ -10,6 +10,7 @@ CMS_lumi.lumi_7TeV = "4.8 fb^{-1}"
 CMS_lumi.lumi_8TeV = "18.3 fb^{-1}"
 CMS_lumi.writeExtraText = 1
 CMS_lumi.extraText = "Preliminary"
+CMS_lumi.lumi_sqrtS = "13 TeV" # used with iPeriod = 0, e.g. for simulation-only plots (default is an empty string)
 
 iPos = 11
 if( iPos==0 ): CMS_lumi.relPosX = 0.12
@@ -26,9 +27,13 @@ H  = H_ref
 # For instance: 
 #               iPeriod = 3 means: 7 TeV + 8 TeV
 #               iPeriod = 7 means: 7 TeV + 8 TeV + 13 TeV 
+#               iPeriod = 0 means: free form (uses lumi_sqrtS)
 # Initiated by: Gautier Hamel de Monchenault (Saclay)
 # Translated in Python by: Joshua Hardenbrook (Princeton)
+# Updated by:   Dinko Ferencek (Rutgers)
 #
+
+iPeriod = 3
 
 # references for T, B, L, R
 T = 0.08*H_ref
@@ -69,7 +74,7 @@ MC.Draw("histsame")
 data.Draw("esamex0")
 
 #draw the lumi text on the canvas
-CMS_lumi.CMS_lumi(canvas, 3, iPos)
+CMS_lumi.CMS_lumi(canvas, iPeriod, iPos)
 
 canvas.cd()
 canvas.Update()
@@ -149,4 +154,4 @@ latex.DrawLatex(xx_+1.*bwx_,yy_,"Z #rightarrow e^{+}e^{-} (MC)")
 #update the canvas to draw the legend
 canvas.Update()
 
-raw_input("Type Entry to end")
+raw_input("Press Enter to end")
